@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}URL Shortener{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.7.2/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+{% endblock %}
+
+{% block body %}
+<div class="container mx-auto px-4 py-8">
+    <div class="max-w-2xl mx-auto">
+        <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+            <div class="p-6 bg-blue-600">
+                <h1 class="text-2xl font-bold text-white text-center">URL Shortener</h1>
+            </div>
+            
+            <div class="p-6">
+                {% for message in app.flashes('success') %}
+                    <div class="alert alert-success mb-4">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+
+                <form method="POST" class="space-y-4">
+                    <div class="form-control">
+                        <label class="label">
+                            <span class="label-text">Enter your long URL</span>
+                        </label>
+                        <input type="url" 
+                               name="fullLink" 
+                               required
+                               placeholder="https://example.com/very/long/url/that/needs/shortening"
+                               class="input input-bordered w-full">
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary w-full">
+                        Shorten URL
+                    </button>
+                </form>
+            </div>
+            
+            <div class="p-6 bg-gray-50 border-t text-center text-sm text-gray-600">
+                Create short, memorable links that are easy to share
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
